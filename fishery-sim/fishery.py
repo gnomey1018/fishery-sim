@@ -12,11 +12,14 @@ for year in range(1, 21):
     harvest1 = int(input("Player 1, how many fish will you catch? "))
     harvest2 = int(input("Player 2, how many fish will you catch? "))
 
+    harvest1 = min(harvest1, round(pop))
+    harvest2 = min(harvest2, round(pop) - harvest1)
+
     total1 = total1 + harvest1
     total2 = total2 + harvest2
     pop = pop + r * pop * (1 - pop / K) - harvest1 - harvest2
 
-    if pop <= 0:
+    if pop <= 10:
         pop = 0
         print("\nThe fishery has collapsed in year", year, "!")
         break
